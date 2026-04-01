@@ -1,0 +1,15 @@
+apiVersion: v2
+name: aresvision
+description: Defense AI Computer Vision System
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - ai
+  - computer-vision
+  - defense
+  - isr
+  - edge-deployment
+maintainers:
+  - name: Inmaculada Rondon
+    email: ic.rondon@uniandes.edu.co

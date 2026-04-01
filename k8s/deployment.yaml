@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aresvision
+  namespace: defense-ai
+  labels:
+    app: aresvision
+    version: "1.0.0"
+    classification: unclassified
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aresvision
+  template:
+    metadata:
+      labels:
+        app: aresvision
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: aresvision
+        image: mackieuni/aresvision:1.0.0
+        ports:
+        - containerPort: 8000
+          name: api
+        - containerPort: 9090
+          name: metrics
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "2000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        env:
+        - name: ENVIRONMENT
+          value: "production"
+        - name: LOG_LEVEL
+          value: "INFO"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aresvision-service
+  namespace: defense-ai
+spec:
+  selector:
+    app: aresvision
+  ports:
+  - name: api
+    port: 80
+    targetPort: 8000
+  - name: metrics
+    port: 9090
+    targetPort: 9090
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: defense-ai
+  labels:
+    classification: unclassified
+    project: aresvision
