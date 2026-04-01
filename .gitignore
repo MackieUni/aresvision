@@ -77,3 +77,4 @@ credentials/
 *.ipynb
 
 onnxruntime_profile_*.json
+onnxruntime_profile_*.json
