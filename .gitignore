@@ -79,3 +79,11 @@ credentials/
 onnxruntime_profile_*.json
 onnxruntime_profile_*.json
 onnxruntime_profile_*.json
+# Temp files
+write_pipeline.py
+onnxruntime_profile_*.json
+
+# Model weights (too large)
+yolov8n.pt
+*.pt
+*.pth
