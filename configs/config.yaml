@@ -1,0 +1,52 @@
+# AresVision Configuration File
+# Defense AI Computer Vision System
+
+project:
+  name: "AresVision"
+  version: "1.0.0"
+  description: "Real-time GPU-accelerated computer vision for ISR"
+  environment: "development"
+
+model:
+  name: "yolov8n"
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  input_size: 640
+  device: "cpu"
+  onnx_model_path: "models/aresvision.onnx"
+  pytorch_model_path: "models/aresvision.pt"
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  classes:
+    - "vehicle"
+    - "person"
+    - "aircraft"
+    - "vessel"
+    - "unknown"
+
+inference:
+  batch_size: 1
+  num_threads: 2
+  latency_target_ms: 100
+  enable_profiling: true
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  debug: false
+
+monitoring:
+  enable_prometheus: true
+  metrics_port: 9090
+  log_level: "INFO"
+  log_file: "logs/aresvision.log"
+
+benchmarks:
+  warmup_iterations: 10
+  test_iterations: 100
+  save_results: true
+  results_path: "benchmarks/results"
+

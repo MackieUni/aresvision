@@ -1,0 +1,43 @@
+# AresVision — Defense AI Computer Vision System
+# Core ML Framework
+torch==2.2.2
+torchvision==0.17.2
+torchaudio==2.2.2
+
+# Computer Vision
+ultralytics==8.4.33
+opencv-python==4.13.0.92
+
+# ONNX Inference Engine
+onnx==1.21.0
+onnxruntime==1.23.2
+
+# API Layer
+fastapi==0.135.2
+uvicorn==0.42.0
+python-multipart==0.0.22
+httpx==0.28.1
+pydantic==2.12.5
+
+# Data Processing
+numpy<2.0
+pandas==3.0.2
+scipy==1.17.1
+pillow==12.1.1
+
+# Visualization & Dashboard
+matplotlib==3.10.8
+streamlit==1.56.0
+
+# Monitoring & Metrics
+prometheus-client==0.24.1
+
+# Testing & Quality
+pytest==9.0.2
+pytest-cov==7.1.0
+
+# Utilities
+pyyaml==6.0.3
+psutil==7.2.2
+requests==2.33.1
+
